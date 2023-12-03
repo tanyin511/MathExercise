@@ -6,7 +6,7 @@ object Exercises {
     fun addition(min: Int, max: Int): Result {
         if (min >= max) return Result.error
         var a = getRandomInt(min, max)
-        var b = getRandomInt(min, max - a + 1)
+        var b = getRandomInt(min, max - a + min)
         return Result("$a + $b = ", a + b)
     }
 
@@ -32,11 +32,12 @@ object Exercises {
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
-        var a = multiplication.operationResult
-        var b = getRandomInt(min, max - a + 1)
+        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var c = getRandomInt(min, max - a * b - 1)
+
         return Result(
-            "${multiplication.formula} + $b = ", a + b
+            "$a X $b + $c= ", a * b + c
         )
     }
 
@@ -48,11 +49,12 @@ object Exercises {
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
-        var a = multiplication.operationResult
-        var b = getRandomInt(min, max - a + 1)
+        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var c = getRandomInt(min, max - a * b + min)
+
         return Result(
-            "$b + ${multiplication.formula} = ", a + b
+            "$c + $a X $b = ", c + a * b
         )
     }
 
@@ -64,11 +66,12 @@ object Exercises {
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
-        var a = multiplication.operationResult
-        var b = getRandomInt(min, multiplication.operationResult)
+        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var c = getRandomInt(min, a * b)
+
         return Result(
-            "${multiplication.formula} - $b = ", a - b
+            "$a X $b - $c= ", a * b - c
         )
     }
 
@@ -80,11 +83,12 @@ object Exercises {
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
-        var a = multiplication.operationResult
-        var b = getRandomInt(multiplication.operationResult, max)
+        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
+        var c = getRandomInt(a * b, max)
+
         return Result(
-            "$b - ${multiplication.formula} = ", b - a
+            "$c - $a X $b = ", c - a * b
         )
     }
 

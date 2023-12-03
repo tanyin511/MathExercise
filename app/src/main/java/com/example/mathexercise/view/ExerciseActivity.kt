@@ -28,7 +28,7 @@ class ExerciseActivity : ComponentActivity() {
         vm.minMultiplicationNumber = intent.getIntExtra("minMultiplicationNumber", 0)
         vm.maxMultiplicationNumber = intent.getIntExtra("maxMultiplicationNumber", 0)
 
-        val exercise = vm.generateExercise(60)
+        val exercise = vm.generateExercise(20)
 
         setContent {
             MathExerciseTheme {
@@ -38,8 +38,8 @@ class ExerciseActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column {
-                        repeat(60) {
-                            Text(text = " [$it] ${exercise[it]}")
+                        repeat(20) {
+                            Text(text = " [${it + 1}] ${exercise[it]}")
                         }
                     }
                     //Greeting2("Android")
