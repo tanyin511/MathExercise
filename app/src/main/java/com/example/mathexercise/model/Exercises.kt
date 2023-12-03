@@ -1,13 +1,12 @@
 package com.example.mathexercise.model
 
-import android.util.Range
 import kotlin.random.Random
 
 object Exercises {
     fun addition(min: Int, max: Int): Result {
         if (min >= max) return Result.error
         var a = getRandomInt(min, max)
-        var b = getRandomInt(min, max - a)
+        var b = getRandomInt(min, max - a + 1)
         return Result("$a + $b = ", a + b)
     }
 
@@ -25,45 +24,105 @@ object Exercises {
         return Result("$a x $b = ", a * b)
     }
 
-    fun multiplicationAndAddition(min: Int, max: Int): Result {
+    fun multiplicationAndAddition(
+        min: Int,
+        max: Int,
+        minMultiplicationNumber: Int,
+        maxMultiplicationNumber: Int
+    ): Result {
         if (min >= max) return Result.error
-        var multiplication = multiplication(min, max)
+        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
+        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
         var a = multiplication.operationResult
-        var b = getRandomInt(a, max)
-        when (getRandomInt(1, 2)) {
-            1 -> return Result(
-                "${multiplication.formula} + $b = ",
-                multiplication.operationResult + b
-            )
-
-            2 -> return Result(
-                "$b + ${multiplication.formula} = ",
-                multiplication.operationResult + b
-            )
-        }
-        return Result.error
+        var b = getRandomInt(min, max - a + 1)
+        return Result(
+            "${multiplication.formula} + $b = ", a + b
+        )
     }
 
-    fun multiplicationAndSubtraction(min: Int, max: Int): Result {
+    fun additionAndMultiplication(
+        min: Int,
+        max: Int,
+        minMultiplicationNumber: Int,
+        maxMultiplicationNumber: Int
+    ): Result {
         if (min >= max) return Result.error
-        var multiplication = multiplication(min, max)
+        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
+        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
         var a = multiplication.operationResult
-        when (getRandomInt(1, 2)) {
-            1 -> {
-                var b = getRandomInt(a, max)
-                return Result(
-                    "$b - $a = ", b - a
-                )
-            }
+        var b = getRandomInt(min, max - a + 1)
+        return Result(
+            "$b + ${multiplication.formula} = ", a + b
+        )
+    }
 
-            2 -> {
-                var b = getRandomInt(min, a)
-                return Result(
-                    "$a - $b = ", a - b
-                )
-            }
+    fun multiplicationAndSubtraction(
+        min: Int,
+        max: Int,
+        minMultiplicationNumber: Int,
+        maxMultiplicationNumber: Int
+    ): Result {
+        if (min >= max) return Result.error
+        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
+        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
+        var a = multiplication.operationResult
+        var b = getRandomInt(min, multiplication.operationResult)
+        return Result(
+            "${multiplication.formula} - $b = ", a - b
+        )
+    }
+
+    fun subtractionAndMultiplication(
+        min: Int,
+        max: Int,
+        minMultiplicationNumber: Int,
+        maxMultiplicationNumber: Int
+    ): Result {
+        if (min >= max) return Result.error
+        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
+        var multiplication = multiplication(minMultiplicationNumber, maxMultiplicationNumber)
+        var a = multiplication.operationResult
+        var b = getRandomInt(multiplication.operationResult, max)
+        return Result(
+            "$b - ${multiplication.formula} = ", b - a
+        )
+    }
+
+    fun hybridProblems(
+        min: Int,
+        max: Int,
+        minMultiplicationNumber: Int,
+        maxMultiplicationNumber: Int
+    ): Result {
+        return when (getRandomInt(1, 4)) {
+            1 -> multiplicationAndAddition(
+                min,
+                max,
+                minMultiplicationNumber,
+                maxMultiplicationNumber
+            )
+
+            2 -> additionAndMultiplication(
+                min,
+                max,
+                minMultiplicationNumber,
+                maxMultiplicationNumber
+            )
+
+            3 -> subtractionAndMultiplication(
+                min,
+                max,
+                minMultiplicationNumber,
+                maxMultiplicationNumber
+            )
+
+            else -> multiplicationAndSubtraction(
+                min,
+                max,
+                minMultiplicationNumber,
+                maxMultiplicationNumber
+            )
         }
-        return Result.error
     }
 }
 
