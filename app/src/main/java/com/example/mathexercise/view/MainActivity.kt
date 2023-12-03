@@ -27,6 +27,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val vm: MainActivityViewModel by viewModels()
+        val context = this
+
         setContent {
             MathExerciseTheme {
                 // A surface container using the 'background' color from the theme
@@ -80,10 +82,13 @@ class MainActivity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(30.dp))
 
                         Button(
-                            onClick = { vm.generateExercise() },
+                            onClick = { vm.generateExercise(context) },
                             modifier = Modifier.fillMaxWidth(),
                         ) {
-                            Text(text = "生成练习题", textAlign = TextAlign.Center)
+                            Text(
+                                text = "生成练习题",
+                                textAlign = TextAlign.Center,
+                            )
                         }
                     }
                 }
