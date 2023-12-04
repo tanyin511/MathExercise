@@ -3,14 +3,20 @@ package com.example.mathexercise.model
 import kotlin.random.Random
 
 object Exercises {
-    fun addition(min: Int = NumberRange.minNumber, max: Int = NumberRange.maxNumber): Result {
+    fun addition(
+        min: Int = RangeConfig.minNumber,
+        max: Int = RangeConfig.maxNumber
+    ): Result {
         if (min >= max) return Result.error
         val a = getRandomInt(min, max)
         val b = getRandomInt(min, max - a + min)
         return Result("$a + $b = ", a + b)
     }
 
-    fun subtraction(min: Int = NumberRange.minNumber, max: Int = NumberRange.maxNumber): Result {
+    fun subtraction(
+        min: Int = RangeConfig.minNumber,
+        max: Int = RangeConfig.maxNumber
+    ): Result {
         if (min >= max) return Result.error
         val a = getRandomInt(min, max - 1)
         val b = getRandomInt(a, max)
@@ -18,8 +24,8 @@ object Exercises {
     }
 
     fun multiplication(
-        min: Int = NumberRange.minMultiplier,
-        max: Int = NumberRange.maxMultiplier
+        min: Int = RangeConfig.minMultiplier,
+        max: Int = RangeConfig.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
         val a = getRandomInt(min, max)
@@ -28,10 +34,10 @@ object Exercises {
     }
 
     fun multiplicationAndAddition(
-        min: Int = NumberRange.minNumber,
-        max: Int = NumberRange.maxNumber,
-        minMultiplier: Int = NumberRange.minMultiplier,
-        maxMultiplier: Int = NumberRange.maxMultiplier
+        min: Int = RangeConfig.minNumber,
+        max: Int = RangeConfig.maxNumber,
+        minMultiplier: Int = RangeConfig.minMultiplier,
+        maxMultiplier: Int = RangeConfig.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplier >= maxMultiplier) return Result.error
@@ -45,10 +51,10 @@ object Exercises {
     }
 
     fun additionAndMultiplication(
-        min: Int = NumberRange.minNumber,
-        max: Int = NumberRange.maxNumber,
-        minMultiplier: Int = NumberRange.minMultiplier,
-        maxMultiplier: Int = NumberRange.maxMultiplier
+        min: Int = RangeConfig.minNumber,
+        max: Int = RangeConfig.maxNumber,
+        minMultiplier: Int = RangeConfig.minMultiplier,
+        maxMultiplier: Int = RangeConfig.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplier >= maxMultiplier) return Result.error
@@ -62,10 +68,10 @@ object Exercises {
     }
 
     fun multiplicationAndSubtraction(
-        min: Int = NumberRange.minNumber,
-        max: Int = NumberRange.maxNumber,
-        minMultiplier: Int = NumberRange.minMultiplier,
-        maxMultiplier: Int = NumberRange.maxMultiplier
+        min: Int = RangeConfig.minNumber,
+        max: Int = RangeConfig.maxNumber,
+        minMultiplier: Int = RangeConfig.minMultiplier,
+        maxMultiplier: Int = RangeConfig.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplier >= maxMultiplier) return Result.error
@@ -79,10 +85,10 @@ object Exercises {
     }
 
     fun subtractionAndMultiplication(
-        min: Int = NumberRange.minNumber,
-        max: Int = NumberRange.maxNumber,
-        minMultiplier: Int = NumberRange.minMultiplier,
-        maxMultiplier: Int = NumberRange.maxMultiplier
+        min: Int = RangeConfig.minNumber,
+        max: Int = RangeConfig.maxNumber,
+        minMultiplier: Int = RangeConfig.minMultiplier,
+        maxMultiplier: Int = RangeConfig.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
         if (minMultiplier >= maxMultiplier) return Result.error
@@ -96,7 +102,7 @@ object Exercises {
     }
 }
 
-object NumberRange {
+object RangeConfig {
     var minNumber: Int = 1
     var maxNumber: Int = 99
     var minMultiplier: Int = 1

@@ -4,14 +4,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import com.example.mathexercise.model.Exercises
-import com.example.mathexercise.model.NumberRange
+import com.example.mathexercise.model.RangeConfig
 import com.example.mathexercise.model.Result
 
 
 class ExerciseViewModel : ViewModel() {
 
     var hybridNumber: Int = 10
-    var numberRange = NumberRange
+    var numberRange = RangeConfig
 
     fun generateExercise(number: Int): SnapshotStateList<String> {
         val mutableStateList = mutableStateListOf<String>()

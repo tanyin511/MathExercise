@@ -50,23 +50,23 @@ class MainActivity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(30.dp))
 
                         Text(
-                            " 乘法题范围(${vm.minMultiplicationNumber.value.toInt()} ~ " +
-                                    "${vm.maxMultiplicationNumber.value.toInt()})"
+                            " 乘法题范围(${vm.minMultiplier.value.toInt()} ~ " +
+                                    "${vm.maxMultiplier.value.toInt()})"
                         )
                         Slider(
-                            valueRange = vm.rangeOfMultiplicationNumber,
-                            value = vm.minMultiplicationNumber.value,
+                            valueRange = vm.rangeOfMultiplier,
+                            value = vm.minMultiplier.value,
                             onValueChange = {
-                                if (it.toInt() < vm.maxMultiplicationNumber.value.toInt())
-                                    vm.minMultiplicationNumber.value = it
+                                if (it.toInt() < vm.maxMultiplier.value.toInt())
+                                    vm.minMultiplier.value = it
                             }
                         )
                         Slider(
-                            valueRange = vm.rangeOfMultiplicationNumber,
-                            value = vm.maxMultiplicationNumber.value,
+                            valueRange = vm.rangeOfMultiplier,
+                            value = vm.maxMultiplier.value,
                             onValueChange = {
-                                if (it.toInt() > vm.minMultiplicationNumber.value.toInt())
-                                    vm.maxMultiplicationNumber.value = it
+                                if (it.toInt() > vm.minMultiplier.value.toInt())
+                                    vm.maxMultiplier.value = it
                             }
                         )
 

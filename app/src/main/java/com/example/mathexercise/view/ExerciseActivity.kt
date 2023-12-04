@@ -24,8 +24,8 @@ class ExerciseActivity : ComponentActivity() {
         val intent = intent
         vm.numberRange.minNumber = 1
         vm.numberRange.maxNumber = intent.getIntExtra("maxNumber", 0)
-        vm.numberRange.minMultiplier = intent.getIntExtra("minMultiplicationNumber", 0)
-        vm.numberRange.maxMultiplier = intent.getIntExtra("maxMultiplicationNumber", 0)
+        vm.numberRange.minMultiplier = intent.getIntExtra("minMultiplier", 0)
+        vm.numberRange.maxMultiplier = intent.getIntExtra("maxMultiplier", 0)
 
         vm.hybridNumber = intent.getIntExtra("hybridNumber", 0)
         val exercise = vm.generateExercise(20)
