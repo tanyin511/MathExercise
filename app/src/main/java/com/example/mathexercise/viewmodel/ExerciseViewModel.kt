@@ -4,38 +4,50 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import com.example.mathexercise.model.Exercises
-import com.example.mathexercise.model.getRandomInt
+import com.example.mathexercise.model.NumberRange
+import com.example.mathexercise.model.Result
+
 
 class ExerciseViewModel : ViewModel() {
-    var maxNumber = 99
-    var hybridNumber = 10
-    var minMultiplicationNumber = 1
-    var maxMultiplicationNumber = 9
+
+    var hybridNumber: Int = 10
+    var numberRange = NumberRange
 
     fun generateExercise(number: Int): SnapshotStateList<String> {
-        var mutableStateList = mutableStateListOf<String>()
+        val mutableStateList = mutableStateListOf<String>()
+        val list = mutableListOf<() -> Result>()
+        list.add {
+            Exercises.addition()
+        }
+        list.add {
+            Exercises.subtraction()
+        }
+        list.add {
+            Exercises.multiplication()
+        }
+
         repeat(number - hybridNumber) {
-            when (getRandomInt(1, 3)) {
-                1 -> mutableStateList.add(Exercises.addition(1, maxNumber).formula)
-                2 -> mutableStateList.add(Exercises.subtraction(1, maxNumber).formula)
-                else -> mutableStateList.add(
-                    Exercises.multiplication(
-                        minMultiplicationNumber,
-                        maxMultiplicationNumber
-                    ).formula
-                )
-            }
+            mutableStateList.add(list.shuffled()[0].invoke().formula)
         }
+
+        list.clear()
+        list.add {
+            Exercises.additionAndMultiplication()
+        }
+        list.add {
+            Exercises.multiplicationAndAddition()
+        }
+        list.add {
+            Exercises.subtractionAndMultiplication()
+        }
+        list.add {
+            Exercises.multiplicationAndSubtraction()
+        }
+
         repeat(hybridNumber) {
-            mutableStateList.add(
-                Exercises.hybridProblems(
-                    1,
-                    maxNumber,
-                    minMultiplicationNumber,
-                    maxMultiplicationNumber
-                ).formula
-            )
+            mutableStateList.add(list.shuffled()[0].invoke().formula)
         }
+
         return mutableStateList
     }
 }

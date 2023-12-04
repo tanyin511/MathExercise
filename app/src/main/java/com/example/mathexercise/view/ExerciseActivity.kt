@@ -1,6 +1,5 @@
 package com.example.mathexercise.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,11 +22,12 @@ class ExerciseActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val intent = intent
-        vm.maxNumber = intent.getIntExtra("maxNumber", 0)
-        vm.hybridNumber = intent.getIntExtra("hybridNumber", 0)
-        vm.minMultiplicationNumber = intent.getIntExtra("minMultiplicationNumber", 0)
-        vm.maxMultiplicationNumber = intent.getIntExtra("maxMultiplicationNumber", 0)
+        vm.numberRange.minNumber = 1
+        vm.numberRange.maxNumber = intent.getIntExtra("maxNumber", 0)
+        vm.numberRange.minMultiplier = intent.getIntExtra("minMultiplicationNumber", 0)
+        vm.numberRange.maxMultiplier = intent.getIntExtra("maxMultiplicationNumber", 0)
 
+        vm.hybridNumber = intent.getIntExtra("hybridNumber", 0)
         val exercise = vm.generateExercise(20)
 
         setContent {

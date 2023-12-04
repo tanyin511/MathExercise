@@ -3,38 +3,41 @@ package com.example.mathexercise.model
 import kotlin.random.Random
 
 object Exercises {
-    fun addition(min: Int, max: Int): Result {
+    fun addition(min: Int = NumberRange.minNumber, max: Int = NumberRange.maxNumber): Result {
         if (min >= max) return Result.error
-        var a = getRandomInt(min, max)
-        var b = getRandomInt(min, max - a + min)
+        val a = getRandomInt(min, max)
+        val b = getRandomInt(min, max - a + min)
         return Result("$a + $b = ", a + b)
     }
 
-    fun subtraction(min: Int, max: Int): Result {
+    fun subtraction(min: Int = NumberRange.minNumber, max: Int = NumberRange.maxNumber): Result {
         if (min >= max) return Result.error
-        var a = getRandomInt(min, max - 1)
-        var b = getRandomInt(a, max)
+        val a = getRandomInt(min, max - 1)
+        val b = getRandomInt(a, max)
         return Result("$b - $a = ", b - a)
     }
 
-    fun multiplication(min: Int, max: Int): Result {
+    fun multiplication(
+        min: Int = NumberRange.minMultiplier,
+        max: Int = NumberRange.maxMultiplier
+    ): Result {
         if (min >= max) return Result.error
-        var a = getRandomInt(min, max)
-        var b = getRandomInt(min, max)
+        val a = getRandomInt(min, max)
+        val b = getRandomInt(min, max)
         return Result("$a x $b = ", a * b)
     }
 
     fun multiplicationAndAddition(
-        min: Int,
-        max: Int,
-        minMultiplicationNumber: Int,
-        maxMultiplicationNumber: Int
+        min: Int = NumberRange.minNumber,
+        max: Int = NumberRange.maxNumber,
+        minMultiplier: Int = NumberRange.minMultiplier,
+        maxMultiplier: Int = NumberRange.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
-        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var c = getRandomInt(min, max - a * b - 1)
+        if (minMultiplier >= maxMultiplier) return Result.error
+        val a = getRandomInt(minMultiplier, maxMultiplier)
+        val b = getRandomInt(minMultiplier, maxMultiplier)
+        val c = getRandomInt(min, max - a * b - 1)
 
         return Result(
             "$a X $b + $c= ", a * b + c
@@ -42,16 +45,16 @@ object Exercises {
     }
 
     fun additionAndMultiplication(
-        min: Int,
-        max: Int,
-        minMultiplicationNumber: Int,
-        maxMultiplicationNumber: Int
+        min: Int = NumberRange.minNumber,
+        max: Int = NumberRange.maxNumber,
+        minMultiplier: Int = NumberRange.minMultiplier,
+        maxMultiplier: Int = NumberRange.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
-        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var c = getRandomInt(min, max - a * b + min)
+        if (minMultiplier >= maxMultiplier) return Result.error
+        val a = getRandomInt(minMultiplier, maxMultiplier)
+        val b = getRandomInt(minMultiplier, maxMultiplier)
+        val c = getRandomInt(min, max - a * b + min)
 
         return Result(
             "$c + $a X $b = ", c + a * b
@@ -59,16 +62,16 @@ object Exercises {
     }
 
     fun multiplicationAndSubtraction(
-        min: Int,
-        max: Int,
-        minMultiplicationNumber: Int,
-        maxMultiplicationNumber: Int
+        min: Int = NumberRange.minNumber,
+        max: Int = NumberRange.maxNumber,
+        minMultiplier: Int = NumberRange.minMultiplier,
+        maxMultiplier: Int = NumberRange.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
-        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var c = getRandomInt(min, a * b)
+        if (minMultiplier >= maxMultiplier) return Result.error
+        val a = getRandomInt(minMultiplier, maxMultiplier)
+        val b = getRandomInt(minMultiplier, maxMultiplier)
+        val c = getRandomInt(min, a * b)
 
         return Result(
             "$a X $b - $c= ", a * b - c
@@ -76,58 +79,28 @@ object Exercises {
     }
 
     fun subtractionAndMultiplication(
-        min: Int,
-        max: Int,
-        minMultiplicationNumber: Int,
-        maxMultiplicationNumber: Int
+        min: Int = NumberRange.minNumber,
+        max: Int = NumberRange.maxNumber,
+        minMultiplier: Int = NumberRange.minMultiplier,
+        maxMultiplier: Int = NumberRange.maxMultiplier
     ): Result {
         if (min >= max) return Result.error
-        if (minMultiplicationNumber >= maxMultiplicationNumber) return Result.error
-        var a = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var b = getRandomInt(minMultiplicationNumber, maxMultiplicationNumber)
-        var c = getRandomInt(a * b, max)
+        if (minMultiplier >= maxMultiplier) return Result.error
+        val a = getRandomInt(minMultiplier, maxMultiplier)
+        val b = getRandomInt(minMultiplier, maxMultiplier)
+        val c = getRandomInt(a * b, max)
 
         return Result(
             "$c - $a X $b = ", c - a * b
         )
     }
+}
 
-    fun hybridProblems(
-        min: Int,
-        max: Int,
-        minMultiplicationNumber: Int,
-        maxMultiplicationNumber: Int
-    ): Result {
-        return when (getRandomInt(1, 4)) {
-            1 -> multiplicationAndAddition(
-                min,
-                max,
-                minMultiplicationNumber,
-                maxMultiplicationNumber
-            )
-
-            2 -> additionAndMultiplication(
-                min,
-                max,
-                minMultiplicationNumber,
-                maxMultiplicationNumber
-            )
-
-            3 -> subtractionAndMultiplication(
-                min,
-                max,
-                minMultiplicationNumber,
-                maxMultiplicationNumber
-            )
-
-            else -> multiplicationAndSubtraction(
-                min,
-                max,
-                minMultiplicationNumber,
-                maxMultiplicationNumber
-            )
-        }
-    }
+object NumberRange {
+    var minNumber: Int = 1
+    var maxNumber: Int = 99
+    var minMultiplier: Int = 1
+    var maxMultiplier: Int = 9
 }
 
 class Result(
@@ -145,3 +118,4 @@ class Result(
 fun getRandomInt(min: Int, max: Int): Int {
     return Random.nextInt(min, max + 1)
 }
+
