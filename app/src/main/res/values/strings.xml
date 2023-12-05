@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Math Exercise</string>
+    <string name="app_name">口算练习</string>
     <string name="title_activity_exercise">ExerciseActivity</string>
 </resources>
