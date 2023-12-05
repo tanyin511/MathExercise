@@ -9,8 +9,8 @@ class MainActivityViewModel : ViewModel() {
     val rangeOfMaxNumber = 1f..200f
     var maxNumber = mutableStateOf(99f)
 
-    val rangeOfHybridNumber = 0f..20f
-    var hybridNumber = mutableStateOf(10f)
+    val rangeOfMixedOperations = 0f..20f
+    var mixedOperations = mutableStateOf(10f)
 
     val rangeOfMultiplier = 0f..20f
     var minMultiplier = mutableStateOf(1f)
@@ -20,7 +20,7 @@ class MainActivityViewModel : ViewModel() {
         val intent = Intent(context, com.example.mathexercise.view.ExerciseActivity::class.java)
         intent
             .putExtra("maxNumber", maxNumber.value.toInt())
-            .putExtra("hybridNumber", hybridNumber.value.toInt())
+            .putExtra("mixedOperations", mixedOperations.value.toInt())
             .putExtra("minMultiplier", minMultiplier.value.toInt())
             .putExtra("maxMultiplier", maxMultiplier.value.toInt())
         context.startActivity(intent)

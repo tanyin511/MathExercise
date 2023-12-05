@@ -10,7 +10,7 @@ import com.example.mathexercise.model.Result
 
 class ExerciseViewModel : ViewModel() {
 
-    var hybridNumber: Int = 10
+    var mixedOperations: Int = 10
     var numberRange = RangeConfig
 
     fun generateExercise(number: Int): SnapshotStateList<String> {
@@ -26,7 +26,7 @@ class ExerciseViewModel : ViewModel() {
             Exercises.multiplication()
         }
 
-        repeat(number - hybridNumber) {
+        repeat(number - mixedOperations) {
             mutableStateList.add(list.shuffled()[0].invoke().formula)
         }
 
@@ -44,7 +44,7 @@ class ExerciseViewModel : ViewModel() {
             Exercises.multiplicationAndSubtraction()
         }
 
-        repeat(hybridNumber) {
+        repeat(mixedOperations) {
             mutableStateList.add(list.shuffled()[0].invoke().formula)
         }
 

@@ -33,7 +33,7 @@ class ExerciseActivity : ComponentActivity() {
         vm.numberRange.minMultiplier = intent.getIntExtra("minMultiplier", 0)
         vm.numberRange.maxMultiplier = intent.getIntExtra("maxMultiplier", 0)
 
-        vm.hybridNumber = intent.getIntExtra("hybridNumber", 0)
+        vm.mixedOperations = intent.getIntExtra("mixedOperations", 0)
 
 
         setContent {

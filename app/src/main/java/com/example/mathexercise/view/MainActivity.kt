@@ -72,11 +72,11 @@ class MainActivity : ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(30.dp))
 
-                        Text(" 混合运算题范围(${vm.hybridNumber.value.toInt()})")
+                        Text(" 混合运算题范围(${vm.mixedOperations.value.toInt()})")
                         Slider(
-                            valueRange = vm.rangeOfHybridNumber,
-                            value = vm.hybridNumber.value,
-                            onValueChange = { vm.hybridNumber.value = it }
+                            valueRange = vm.rangeOfMixedOperations,
+                            value = vm.mixedOperations.value,
+                            onValueChange = { vm.mixedOperations.value = it }
                         )
 
                         Spacer(modifier = Modifier.height(30.dp))
